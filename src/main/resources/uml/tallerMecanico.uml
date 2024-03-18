@@ -302,7 +302,7 @@
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8gOIIczHEe66S_aNl6MGrQ" name="Revision" specification="_8gM6AczHEe66S_aNl6MGrQ">
                       <language>JAVA</language>
                       <body>
-    super(revision);
+    super(trabajo);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8gOvMczHEe66S_aNl6MGrQ" name="getPrecioEspecifico" specification="_8gOIIszHEe66S_aNl6MGrQ">
@@ -329,7 +329,7 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_8gMS8czHEe66S_aNl6MGrQ" name="fechaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_8gM6AczHEe66S_aNl6MGrQ" name="Revision" visibility="public" method="_8gOIIczHEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_8gOIIMzHEe66S_aNl6MGrQ" name="revision" type="_8gEXIMzHEe66S_aNl6MGrQ"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_8gOIIMzHEe66S_aNl6MGrQ" name="trabajo" type="_8gEXIMzHEe66S_aNl6MGrQ"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_8gOIIszHEe66S_aNl6MGrQ" name="getPrecioEspecifico" visibility="public" method="_8gOvMczHEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_8gOvMMzHEe66S_aNl6MGrQ" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
@@ -369,18 +369,18 @@
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Dx2isczIEe66S_aNl6MGrQ" name="Trabajo" specification="_Dx0tgczIEe66S_aNl6MGrQ">
                       <language>JAVA</language>
                       <body>
-    Objects.requireNonNull(trabajo, &quot;El trabajo no puede ser nulo.&quot;);
-    cliente = new Cliente(trabajo.cliente);
-    vehiculo = trabajo.vehiculo;
-    fechaInicio = trabajo.fechaInicio;
-    fechaFin = trabajo.fechaFin;
-    horas = trabajo.horas;
+    Objects.requireNonNull(trabajos, &quot;El trabajos no puede ser nulo.&quot;);
+    cliente = new Cliente(trabajos.cliente);
+    vehiculo = trabajos.vehiculo;
+    fechaInicio = trabajos.fechaInicio;
+    fechaFin = trabajos.fechaFin;
+    horas = trabajos.horas;
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Dx3Jw8zIEe66S_aNl6MGrQ" name="copiar" specification="_Dx3JwMzIEe66S_aNl6MGrQ">
                       <language>JAVA</language>
                       <body>
-    Objects.requireNonNull(trabajo, &quot;El trabajo no puede ser nulo.&quot;);
+    Objects.requireNonNull(trabajos, &quot;El trabajos no puede ser nulo.&quot;);
     Trabajo trabajoCopiado = null;
     //        }
     return trabajoCopiado;
@@ -467,7 +467,7 @@
         throw new IllegalArgumentException(&quot;Las horas a añadir deben ser mayores que cero.&quot;);
     }
     if (estaCerrado()) {
-        throw new OperationNotSupportedException(&quot;No se puede añadir horas, ya que el trabajo está cerrado.&quot;);
+        throw new OperationNotSupportedException(&quot;No se puede añadir horas, ya que el trabajos está cerrado.&quot;);
     }
     this.horas += horas;
 </body>
@@ -482,7 +482,7 @@
                       <language>JAVA</language>
                       <body>
     if (estaCerrado()) {
-        throw new OperationNotSupportedException(&quot;El trabajo ya está cerrado.&quot;);
+        throw new OperationNotSupportedException(&quot;El trabajos ya está cerrado.&quot;);
     }
     setFechaFin(fechaFin);
 </body>
@@ -510,8 +510,8 @@
                       <body>
     if (this == o)
         return true;
-    //        if (!(o instanceof Trabajo trabajo)) return false;
-    return Objects.equals(cliente, trabajo.cliente) &amp;&amp; Objects.equals(vehiculo, trabajo.vehiculo) &amp;&amp; Objects.equals(fechaInicio, trabajo.fechaInicio);
+    //        if (!(o instanceof Trabajo trabajos)) return false;
+    return Objects.equals(cliente, trabajos.cliente) &amp;&amp; Objects.equals(vehiculo, trabajos.vehiculo) &amp;&amp; Objects.equals(fechaInicio, trabajos.fechaInicio);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DyFzRMzIEe66S_aNl6MGrQ" name="hashCode" specification="_DyFzQszIEe66S_aNl6MGrQ">
@@ -526,11 +526,11 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx0GcMzIEe66S_aNl6MGrQ" name="fechaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx0tgczIEe66S_aNl6MGrQ" name="Trabajo" visibility="protected" method="_Dx2isczIEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx2isMzIEe66S_aNl6MGrQ" name="trabajo" type="_8gE-MMzHEe66S_aNl6MGrQ"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx2isMzIEe66S_aNl6MGrQ" name="trabajos" type="_8gE-MMzHEe66S_aNl6MGrQ"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx3JwMzIEe66S_aNl6MGrQ" name="copiar" visibility="public" isStatic="true" method="_Dx3Jw8zIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx3JwczIEe66S_aNl6MGrQ" type="_8gE-MMzHEe66S_aNl6MGrQ" direction="return"/>
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx3JwszIEe66S_aNl6MGrQ" name="trabajo" type="_8gE-MMzHEe66S_aNl6MGrQ"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx3JwszIEe66S_aNl6MGrQ" name="trabajos" type="_8gE-MMzHEe66S_aNl6MGrQ"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx3w0MzIEe66S_aNl6MGrQ" name="get" visibility="public" isStatic="true" method="_Dx4X4czIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx3w0czIEe66S_aNl6MGrQ" type="_8gE-MMzHEe66S_aNl6MGrQ" direction="return"/>
@@ -634,7 +634,7 @@
         throw new IllegalArgumentException(&quot;El precio del material a añadir debe ser mayor que cero.&quot;);
     }
     if (estaCerrado()) {
-        throw new OperationNotSupportedException(&quot;No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.&quot;);
+        throw new OperationNotSupportedException(&quot;No se puede añadir precio del material, ya que el trabajos mecánico está cerrado.&quot;);
     }
     this.precioMaterial += precioMaterial;
 </body>
@@ -679,13 +679,13 @@
                     </ownedOperation>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Association" xmi:id="_WZaBwMzKEe66S_aNl6MGrQ" name="A_cliente_trabajo" memberEnd="_Dxv1AMzIEe66S_aNl6MGrQ _WZb28MzKEe66S_aNl6MGrQ">
-                    <ownedEnd xmi:type="uml:Property" xmi:id="_WZb28MzKEe66S_aNl6MGrQ" name="trabajo" type="_8gE-MMzHEe66S_aNl6MGrQ" association="_WZaBwMzKEe66S_aNl6MGrQ">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_WZb28MzKEe66S_aNl6MGrQ" name="trabajos" type="_8gE-MMzHEe66S_aNl6MGrQ" association="_WZaBwMzKEe66S_aNl6MGrQ">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WZceAMzKEe66S_aNl6MGrQ"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WZceAczKEe66S_aNl6MGrQ" value="1"/>
                     </ownedEnd>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Association" xmi:id="_XE_8cMzKEe66S_aNl6MGrQ" name="A_vehiculo_trabajo" memberEnd="_DxwcEMzIEe66S_aNl6MGrQ _XFBxoMzKEe66S_aNl6MGrQ">
-                    <ownedEnd xmi:type="uml:Property" xmi:id="_XFBxoMzKEe66S_aNl6MGrQ" name="trabajo" type="_8gE-MMzHEe66S_aNl6MGrQ" association="_XE_8cMzKEe66S_aNl6MGrQ">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_XFBxoMzKEe66S_aNl6MGrQ" name="trabajos" type="_8gE-MMzHEe66S_aNl6MGrQ" association="_XE_8cMzKEe66S_aNl6MGrQ">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XFBxoczKEe66S_aNl6MGrQ"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XFBxoszKEe66S_aNl6MGrQ" value="1"/>
                     </ownedEnd>
@@ -837,26 +837,26 @@
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yh9MYszAEe6KuY7X7xWG0g" name="insertar" specification="_yh9MYMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No se puede insertar un trabajo nulo.&quot;);
-    comprobarTrabajo(trabajo.getCliente(), trabajo.getVehiculo(), trabajo.getFechaInicio());
-    coleccionTrabajos.add(trabajo);
+    Objects.requireNonNull(trabajos, &quot;No se puede insertar un trabajos nulo.&quot;);
+    comprobarTrabajo(trabajos.getCliente(), trabajos.getVehiculo(), trabajos.getFechaInicio());
+    coleccionTrabajos.add(trabajos);
 </body>
                       </ownedBehavior>
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yh_BkMzAEe6KuY7X7xWG0g" name="comprobarTrabajo" specification="_yh9zcMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    for (Trabajo trabajo : coleccionTrabajos) {
-        if (!trabajo.estaCerrado()) {
-            if (trabajo.getCliente().equals(cliente)) {
-                throw new OperationNotSupportedException(&quot;El cliente tiene otro trabajo en curso.&quot;);
-            } else if (trabajo.getVehiculo().equals(vehiculo)) {
+    for (Trabajo trabajos : coleccionTrabajos) {
+        if (!trabajos.estaCerrado()) {
+            if (trabajos.getCliente().equals(cliente)) {
+                throw new OperationNotSupportedException(&quot;El cliente tiene otro trabajos en curso.&quot;);
+            } else if (trabajos.getVehiculo().equals(vehiculo)) {
                 throw new OperationNotSupportedException(&quot;El vehículo está actualmente en el taller.&quot;);
             }
         } else {
-            if (trabajo.getCliente().equals(cliente) &amp;&amp; !fevchaInicio.isAfter(trabajo.getFechaFin())) {
-                throw new OperationNotSupportedException(&quot;El cliente tiene otro trabajo posterior.&quot;);
-            } else if (trabajo.getVehiculo().equals(vehiculo) &amp;&amp; !fevchaInicio.isAfter(trabajo.getFechaFin())) {
-                throw new OperationNotSupportedException(&quot;El vehículo tiene otro trabajo posterior.&quot;);
+            if (trabajos.getCliente().equals(cliente) &amp;&amp; !fevchaInicio.isAfter(trabajos.getFechaFin())) {
+                throw new OperationNotSupportedException(&quot;El cliente tiene otro trabajos posterior.&quot;);
+            } else if (trabajos.getVehiculo().equals(vehiculo) &amp;&amp; !fevchaInicio.isAfter(trabajos.getFechaFin())) {
+                throw new OperationNotSupportedException(&quot;El vehículo tiene otro trabajos posterior.&quot;);
             }
         }
     }
@@ -865,8 +865,8 @@
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yiAPsczAEe6KuY7X7xWG0g" name="anadirHoras" specification="_yh_ooMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No puedo añadir horas a un trabajo nulo.&quot;);
-    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
+    Objects.requireNonNull(trabajos, &quot;No puedo añadir horas a un trabajos nulo.&quot;);
+    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajos.getVehiculo());
     trabajoEncontrado.anadirHoras(horas);
 </body>
                       </ownedBehavior>
@@ -877,13 +877,13 @@
     Trabajo trabajoEncontrado = null;
     Iterator&lt;Trabajo> iteradorTrabajos = coleccionTrabajos.iterator();
     while (iteradorTrabajos.hasNext() &amp;&amp; trabajoEncontrado == null) {
-        Trabajo trabajo = iteradorTrabajos.next();
-        if (trabajo.getVehiculo().equals(vehiculo) &amp;&amp; !trabajo.estaCerrado()) {
-            trabajoEncontrado = trabajo;
+        Trabajo trabajos = iteradorTrabajos.next();
+        if (trabajos.getVehiculo().equals(vehiculo) &amp;&amp; !trabajos.estaCerrado()) {
+            trabajoEncontrado = trabajos;
         }
     }
     if (trabajoEncontrado == null) {
-        throw new OperationNotSupportedException(&quot;No existe ningún trabajo abierto para dicho vehículo.&quot;);
+        throw new OperationNotSupportedException(&quot;No existe ningún trabajos abierto para dicho vehículo.&quot;);
     }
     return trabajoEncontrado;
 </body>
@@ -891,8 +891,8 @@
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yiDTAczAEe6KuY7X7xWG0g" name="anadirPrecioMaterial" specification="_yiCr8MzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No puedo añadir precio del material a un trabajo nulo.&quot;);
-    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
+    Objects.requireNonNull(trabajos, &quot;No puedo añadir precio del material a un trabajos nulo.&quot;);
+    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajos.getVehiculo());
 /*
 		 * if (trabajoEncontrado instanceof Mecanico mecanico) {
 		 * mecanico.anadirPrecioMaterial(precioMaterial); } else { throw new
@@ -904,27 +904,27 @@
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yiD6E8zAEe6KuY7X7xWG0g" name="cerrar" specification="_yiD6EMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No puedo cerrar un trabajo nulo.&quot;);
-    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
+    Objects.requireNonNull(trabajos, &quot;No puedo cerrar un trabajos nulo.&quot;);
+    Trabajo trabajoEncontrado = getTrabajoAbierto(trabajos.getVehiculo());
     trabajoEncontrado.cerrar(fechaFin);
 </body>
                       </ownedBehavior>
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yiEhI8zAEe6KuY7X7xWG0g" name="buscar" specification="_yiEhIMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No se puede buscar un trabajo nulo.&quot;);
-    int indice = coleccionTrabajos.indexOf(trabajo);
+    Objects.requireNonNull(trabajos, &quot;No se puede buscar un trabajos nulo.&quot;);
+    int indice = coleccionTrabajos.indexOf(trabajos);
     return (indice == -1) ? null : coleccionTrabajos.get(indice);
 </body>
                       </ownedBehavior>
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yiFIMszAEe6KuY7X7xWG0g" name="borrar" specification="_yiFIMMzAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
                         <body>
-    Objects.requireNonNull(trabajo, &quot;No se puede borrar un trabajo nulo.&quot;);
-    if (!coleccionTrabajos.contains(trabajo)) {
-        throw new OperationNotSupportedException(&quot;No existe ningún trabajo igual.&quot;);
+    Objects.requireNonNull(trabajos, &quot;No se puede borrar un trabajos nulo.&quot;);
+    if (!coleccionTrabajos.contains(trabajos)) {
+        throw new OperationNotSupportedException(&quot;No existe ningún trabajos igual.&quot;);
     }
-    coleccionTrabajos.remove(trabajo);
+    coleccionTrabajos.remove(trabajos);
 </body>
                       </ownedBehavior>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yh4T48zAEe6KuY7X7xWG0g" name="Trabajos" visibility="public" method="_yh468czAEe6KuY7X7xWG0g"/>
@@ -949,7 +949,7 @@
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh8lVMzAEe6KuY7X7xWG0g" name="vehiculo" type="_yh7XMszAEe6KuY7X7xWG0g"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yh9MYMzAEe6KuY7X7xWG0g" name="insertar" visibility="public" method="_yh9MYszAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh9MYczAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh9MYczAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yh9zcMzAEe6KuY7X7xWG0g" name="comprobarTrabajo" visibility="private" method="_yh_BkMzAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh9zcczAEe6KuY7X7xWG0g" name="cliente" type="_yh6JEMzAEe6KuY7X7xWG0g"/>
@@ -957,7 +957,7 @@
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh-agczAEe6KuY7X7xWG0g" name="fevchaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yh_ooMzAEe6KuY7X7xWG0g" name="anadirHoras" visibility="public" method="_yiAPsczAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh_ooczAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yh_ooczAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiAPsMzAEe6KuY7X7xWG0g" name="horas" type="_0a3gsMy-Ee6KuY7X7xWG0g"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yiA2wMzAEe6KuY7X7xWG0g" name="getTrabajoAbierto" visibility="private" method="_yiCE4MzAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
@@ -965,19 +965,19 @@
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiBd0czAEe6KuY7X7xWG0g" name="vehiculo" type="_yh7XMszAEe6KuY7X7xWG0g"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yiCr8MzAEe6KuY7X7xWG0g" name="anadirPrecioMaterial" visibility="public" method="_yiDTAczAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiCr8czAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiCr8czAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiDTAMzAEe6KuY7X7xWG0g" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yiD6EMzAEe6KuY7X7xWG0g" name="cerrar" visibility="public" method="_yiD6E8zAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiD6EczAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiD6EczAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiD6EszAEe6KuY7X7xWG0g" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yiEhIMzAEe6KuY7X7xWG0g" name="buscar" visibility="public" method="_yiEhI8zAEe6KuY7X7xWG0g">
                         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiEhIczAEe6KuY7X7xWG0g" type="_yh3FwMzAEe6KuY7X7xWG0g" direction="return"/>
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiEhIszAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiEhIszAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                       </ownedOperation>
                       <ownedOperation xmi:type="uml:Operation" xmi:id="_yiFIMMzAEe6KuY7X7xWG0g" name="borrar" visibility="public" method="_yiFIMszAEe6KuY7X7xWG0g" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiFIMczAEe6KuY7X7xWG0g" name="trabajo" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
+                        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yiFIMczAEe6KuY7X7xWG0g" name="trabajos" type="_yh3FwMzAEe6KuY7X7xWG0g"/>
                       </ownedOperation>
                     </packagedElement>
                     <packagedElement xmi:type="uml:Class" xmi:id="_yh3FwMzAEe6KuY7X7xWG0g" name="Trabajo"/>
@@ -1157,20 +1157,20 @@
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqG3wMzPEe66S_aNl6MGrQ" name="insertar" specification="_DqGQsMzPEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kqyk4s8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kqyk4s8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kqyk488IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kqyk5M8IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    Cliente cliente = clientes.buscar(trabajo.getCliente());
-    Vehiculo vehiculo = vehiculos.buscar(trabajo.getVehiculo());
-    if (trabajo instanceof Revision) {
-        trabajo = new Revision(cliente, vehiculo, trabajo.getFechaInicio());
+    Cliente cliente = clientes.buscar(trabajos.getCliente());
+    Vehiculo vehiculo = vehiculos.buscar(trabajos.getVehiculo());
+    if (trabajos instanceof Revision) {
+        trabajos = new Revision(cliente, vehiculo, trabajos.getFechaInicio());
     } else {
-        trabajo = new Mecanico(cliente, vehiculo, trabajo.getFechaInicio());
+        trabajos = new Mecanico(cliente, vehiculo, trabajos.getFechaInicio());
     }
-    trabajos.insertar(trabajo);
+    trabajos.insertar(trabajos);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqHe0czPEe66S_aNl6MGrQ" name="buscar" specification="_DqG3wczPEe66S_aNl6MGrQ">
@@ -1208,14 +1208,14 @@
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kqzzBc8IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kqzzBs8IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq0aEM8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq0aEM8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kq0aEc8IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kq0aEs8IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    trabajo = Objects.requireNonNull(trabajos.buscar(trabajo), &quot;No existe un trabajo igual.&quot;);
-    return Trabajo.copiar(trabajo);
+    trabajos = Objects.requireNonNull(trabajos.buscar(trabajos), &quot;No existe un trabajos igual.&quot;);
+    return Trabajo.copiar(trabajos);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqJ7EczPEe66S_aNl6MGrQ" name="modificar" specification="_DqJUAMzPEe66S_aNl6MGrQ">
@@ -1241,7 +1241,7 @@
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqLJMMzPEe66S_aNl6MGrQ" name="anadirHoras" specification="_DqKiIMzPEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq1oMs8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq1oMs8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kq1oM88IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kq1oNM8IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
@@ -1251,11 +1251,11 @@
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    trabajos.anadirHoras(trabajo, horas);
+    trabajos.anadirHoras(trabajos, horas);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqMXUMzPEe66S_aNl6MGrQ" name="anadirPrecioMaterial" specification="_DqLJMczPEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq2PQc8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq2PQc8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kq2PQs8IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kq2PQ88IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
@@ -1265,11 +1265,11 @@
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    trabajos.anadirPrecioMaterial(trabajo, precioMaterial);
+    trabajos.anadirPrecioMaterial(trabajos, precioMaterial);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqNlcczPEe66S_aNl6MGrQ" name="cerrar" specification="_DqM-YMzPEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq22Uc8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq22Uc8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kq22Us8IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kq22U88IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
@@ -1279,7 +1279,7 @@
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    trabajos.cerrar(trabajo, fechaFin);
+    trabajos.cerrar(trabajos, fechaFin);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqPaoMzPEe66S_aNl6MGrQ" name="borrar" specification="_DqOMgMzPEe66S_aNl6MGrQ">
@@ -1290,8 +1290,8 @@
                       <language>JAVA</language>
                       <body>
     List&lt;Trabajo> trabajosCliente = trabajos.get(cliente);
-    for (Trabajo trabajo : trabajosCliente) {
-        trabajos.borrar(trabajo);
+    for (Trabajo trabajos : trabajosCliente) {
+        trabajos.borrar(trabajos);
     }
     clientes.borrar(cliente);
 </body>
@@ -1304,20 +1304,20 @@
                       <language>JAVA</language>
                       <body>
     List&lt;Trabajo> trabajosVehiculo = trabajos.get(vehiculo);
-    for (Trabajo trabajo : trabajosVehiculo) {
-        trabajos.borrar(trabajo);
+    for (Trabajo trabajos : trabajosVehiculo) {
+        trabajos.borrar(trabajos);
     }
     vehiculos.borrar(vehiculo);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqQowszPEe66S_aNl6MGrQ" name="borrar" specification="_DqQowMzPEe66S_aNl6MGrQ">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq4EcM8IEe6dsIuvGKkUNw" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_kq4EcM8IEe6dsIuvGKkUNw" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kq4Ecc8IEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kq4Ecs8IEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    trabajos.borrar(trabajo);
+    trabajos.borrar(trabajos);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_DqSd8MzPEe66S_aNl6MGrQ" name="getClientes" specification="_DqRP0MzPEe66S_aNl6MGrQ">
@@ -1352,8 +1352,8 @@
                       <language>JAVA</language>
                       <body>
     List&lt;Trabajo> copiaTrabajos = new ArrayList&lt;>();
-    for (Trabajo trabajo : trabajos.get()) {
-        copiaTrabajos.add(Trabajo.copiar(trabajo));
+    for (Trabajo trabajos : trabajos.get()) {
+        copiaTrabajos.add(Trabajo.copiar(trabajos));
     }
     return copiaTrabajos;
 </body>
@@ -1370,8 +1370,8 @@
                       <language>JAVA</language>
                       <body>
     List&lt;Trabajo> trabajosCliente = new ArrayList&lt;>();
-    for (Trabajo trabajo : trabajos.get(cliente)) {
-        trabajosCliente.add(Trabajo.copiar(trabajo));
+    for (Trabajo trabajos : trabajos.get(cliente)) {
+        trabajosCliente.add(Trabajo.copiar(trabajos));
     }
     return trabajosCliente;
 </body>
@@ -1388,8 +1388,8 @@
                       <language>JAVA</language>
                       <body>
     List&lt;Trabajo> trabajosCliente = new ArrayList&lt;>();
-    for (Trabajo trabajo : trabajos.get(vehiculo)) {
-        trabajosCliente.add(Trabajo.copiar(trabajo));
+    for (Trabajo trabajos : trabajos.get(vehiculo)) {
+        trabajosCliente.add(Trabajo.copiar(trabajos));
     }
     return trabajosCliente;
 </body>
@@ -1406,7 +1406,7 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqFpoczPEe66S_aNl6MGrQ" name="vehiculo" type="_cqXqgMy_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqGQsMzPEe66S_aNl6MGrQ" name="insertar" visibility="public" method="_DqG3wMzPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqGQsczPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqGQsczPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqG3wczPEe66S_aNl6MGrQ" name="buscar" visibility="public" method="_DqHe0czPEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqG3wszPEe66S_aNl6MGrQ" type="_cqUAIMy_Ee6KuY7X7xWG0g" direction="return"/>
@@ -1418,7 +1418,7 @@
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqIF48zPEe66S_aNl6MGrQ" name="buscar" visibility="public" method="_DqIs8szPEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqIs8MzPEe66S_aNl6MGrQ" type="_cqbU4My_Ee6KuY7X7xWG0g" direction="return"/>
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqIs8czPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqIs8czPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqJUAMzPEe66S_aNl6MGrQ" name="modificar" visibility="public" method="_DqJ7EczPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqJUAczPEe66S_aNl6MGrQ" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
@@ -1427,15 +1427,15 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqJ7EMzPEe66S_aNl6MGrQ" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqKiIMzPEe66S_aNl6MGrQ" name="anadirHoras" visibility="public" method="_DqLJMMzPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqKiIczPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqKiIczPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqKiIszPEe66S_aNl6MGrQ" name="horas" type="_DqJ7EszPEe66S_aNl6MGrQ"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqLJMczPEe66S_aNl6MGrQ" name="anadirPrecioMaterial" visibility="public" method="_DqMXUMzPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqLwQMzPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqLwQMzPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqLwQczPEe66S_aNl6MGrQ" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqM-YMzPEe66S_aNl6MGrQ" name="cerrar" visibility="public" method="_DqNlcczPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqM-YczPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqM-YczPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqNlcMzPEe66S_aNl6MGrQ" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqOMgMzPEe66S_aNl6MGrQ" name="borrar" visibility="public" method="_DqPaoMzPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
@@ -1445,7 +1445,7 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqQBsMzPEe66S_aNl6MGrQ" name="vehiculo" type="_cqXqgMy_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqQowMzPEe66S_aNl6MGrQ" name="borrar" visibility="public" method="_DqQowszPEe66S_aNl6MGrQ" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqQowczPEe66S_aNl6MGrQ" name="trabajo" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqQowczPEe66S_aNl6MGrQ" name="trabajos" type="_cqbU4My_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_DqRP0MzPEe66S_aNl6MGrQ" name="getClientes" visibility="public" method="_DqSd8MzPEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqR24MzPEe66S_aNl6MGrQ" type="_cqUAIMy_Ee6KuY7X7xWG0g" direction="return">
@@ -1480,7 +1480,7 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_DqU6M8zPEe66S_aNl6MGrQ" name="vehiculo" type="_cqXqgMy_Ee6KuY7X7xWG0g"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_T2GrQM7-Ee6dsIuvGKkUNw" name="anadirHoras">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_T2cCcM7-Ee6dsIuvGKkUNw" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_T2cCcM7-Ee6dsIuvGKkUNw" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T2fs0M7-Ee6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T2fs0c7-Ee6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
@@ -1673,7 +1673,7 @@
                     <ownedParameter xmi:type="uml:Parameter" xmi:id="_4WlQgM78Ee6dsIuvGKkUNw" name="vehiculo" type="_4V8-YM78Ee6dsIuvGKkUNw"/>
                   </ownedOperation>
                   <ownedOperation xmi:type="uml:Operation" xmi:id="_4Wl3kM78Ee6dsIuvGKkUNw" name="mostrarTrabajo" visibility="public">
-                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_4WmeoM78Ee6dsIuvGKkUNw" name="trabajo" type="_4WAowc78Ee6dsIuvGKkUNw"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_4WmeoM78Ee6dsIuvGKkUNw" name="trabajos" type="_4WAowc78Ee6dsIuvGKkUNw"/>
                   </ownedOperation>
                   <ownedOperation xmi:type="uml:Operation" xmi:id="_4WnFsM78Ee6dsIuvGKkUNw" name="mostrarClientes" visibility="public">
                     <ownedParameter xmi:type="uml:Parameter" xmi:id="_4WoT0M78Ee6dsIuvGKkUNw" name="clientes" type="_4V23wc78Ee6dsIuvGKkUNw">
@@ -1937,13 +1937,13 @@
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Fb3EsM79Ee6dsIuvGKkUNw" name="mostrarTrabajo" specification="_Fb12kM79Ee6dsIuvGKkUNw">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_4r7Lb88dEe6dsIuvGKkUNw" name="trabajo" type="_FbeqMc79Ee6dsIuvGKkUNw">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_4r7Lb88dEe6dsIuvGKkUNw" name="trabajos" type="_FbeqMc79Ee6dsIuvGKkUNw">
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4r7LcM8dEe6dsIuvGKkUNw" value="1"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4r7Lcc8dEe6dsIuvGKkUNw" value="1"/>
                       </ownedParameter>
                       <language>JAVA</language>
                       <body>
-    System.out.println((trabajo != null) ? trabajo : &quot;No existe ningún trabajo para ese cliente, vehículo y fecha.&quot;);
+    System.out.println((trabajos != null) ? trabajos : &quot;No existe ningún trabajos para ese cliente, vehículo y fecha.&quot;);
 </body>
                     </ownedBehavior>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Fb5g8M79Ee6dsIuvGKkUNw" name="mostrarClientes" specification="_Fb3rwM79Ee6dsIuvGKkUNw">
@@ -1986,8 +1986,8 @@
                       <language>JAVA</language>
                       <body>
     if (!trabajos.isEmpty()) {
-        for (Trabajo trabajo : trabajos) {
-            System.out.println(trabajo);
+        for (Trabajo trabajos : trabajos) {
+            System.out.println(trabajos);
         }
     } else {
         System.out.println(&quot;No hay trabajos que mostrar.&quot;);
@@ -2002,8 +2002,8 @@
                       <language>JAVA</language>
                       <body>
     if (!trabajosCliente.isEmpty()) {
-        for (Trabajo trabajo : trabajosCliente) {
-            System.out.println(trabajo);
+        for (Trabajo trabajos : trabajosCliente) {
+            System.out.println(trabajos);
         }
     } else {
         System.out.println(&quot;No hay trabajos que mostrar para dicho cliente.&quot;);
@@ -2018,8 +2018,8 @@
                       <language>JAVA</language>
                       <body>
     if (!trabajosVehiculo.isEmpty()) {
-        for (Trabajo trabajo : trabajosVehiculo) {
-            System.out.println(trabajo);
+        for (Trabajo trabajos : trabajosVehiculo) {
+            System.out.println(trabajos);
         }
     } else {
         System.out.println(&quot;No hay trabajos que mostrar para dicho vehículo.&quot;);
@@ -2082,7 +2082,7 @@
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fb0ocM79Ee6dsIuvGKkUNw" name="vehiculo" type="_FbZKoc79Ee6dsIuvGKkUNw"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Fb12kM79Ee6dsIuvGKkUNw" name="mostrarTrabajo" visibility="public" method="_Fb3EsM79Ee6dsIuvGKkUNw">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fb2doM79Ee6dsIuvGKkUNw" name="trabajo" type="_FbeqMc79Ee6dsIuvGKkUNw"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fb2doM79Ee6dsIuvGKkUNw" name="trabajos" type="_FbeqMc79Ee6dsIuvGKkUNw"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Fb3rwM79Ee6dsIuvGKkUNw" name="mostrarClientes" visibility="public" method="_Fb5g8M79Ee6dsIuvGKkUNw">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fb454M79Ee6dsIuvGKkUNw" name="clientes" type="_FbR14M79Ee6dsIuvGKkUNw">
@@ -2325,25 +2325,25 @@
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh4nws79Ee6dsIuvGKkUNw" name="INSERTAR_REVISION">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh4nw879Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>31, &quot;Insertar trabajo de revisión.&quot;</body>
+                        <body>31, &quot;Insertar trabajos de revisión.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh5O0M79Ee6dsIuvGKkUNw" name="INSERTAR_MECANICO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh5O0c79Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>32, &quot;Insertar trabajo mecánico.&quot;</body>
+                        <body>32, &quot;Insertar trabajos mecánico.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh5O0s79Ee6dsIuvGKkUNw" name="BUSCAR_TRABAJO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh514M79Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>33, &quot;Buscar trabajo.&quot;</body>
+                        <body>33, &quot;Buscar trabajos.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh514c79Ee6dsIuvGKkUNw" name="BORRAR_TRABAJO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh514s79Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>34, &quot;Borrar trabajo.&quot;</body>
+                        <body>34, &quot;Borrar trabajos.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh514879Ee6dsIuvGKkUNw" name="LISTAR_TRABAJOS">
@@ -2367,19 +2367,19 @@
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh7EAs79Ee6dsIuvGKkUNw" name="ANADIR_HORAS_TRABAJO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh7EA879Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>38, &quot;Añadir horas a un trabajo.&quot;</body>
+                        <body>38, &quot;Añadir horas a un trabajos.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh7rEM79Ee6dsIuvGKkUNw" name="ANADIR_PRECIO_MATERIAL_TRABAJO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh7rEc79Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>39, &quot;Añadir precio del material a un trabajo.&quot;</body>
+                        <body>39, &quot;Añadir precio del material a un trabajos.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh8SIM79Ee6dsIuvGKkUNw" name="CERRAR_TRABAJO">
                       <specification xmi:type="uml:OpaqueExpression" xmi:id="_Lh8SIc79Ee6dsIuvGKkUNw" name="specification">
                         <language>JAVA</language>
-                        <body>40, &quot;Cerrar trabajo.&quot;</body>
+                        <body>40, &quot;Cerrar trabajos.&quot;</body>
                       </specification>
                     </ownedLiteral>
                     <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Lh8SIs79Ee6dsIuvGKkUNw" name="SALIR">
@@ -2656,26 +2656,26 @@
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__3A-cMy_Ee6KuY7X7xWG0g" name="vehiculo" type="__2-iM8y_Ee6KuY7X7xWG0g"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3A-ccy_Ee6KuY7X7xWG0g" name="insertar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3A-csy_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3A-csy_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3BlgMy_Ee6KuY7X7xWG0g" name="anadirHoras" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Blgcy_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Blgcy_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Blgsy_Ee6KuY7X7xWG0g" name="horas" type="_0a3gsMy-Ee6KuY7X7xWG0g"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3Blg8y_Ee6KuY7X7xWG0g" name="anadirPrecioMaterial" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3CMkMy_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3CMkMy_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__3CMkcy_Ee6KuY7X7xWG0g" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3CMksy_Ee6KuY7X7xWG0g" name="cerrar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3CzoMy_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3CzoMy_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__3DasMy_Ee6KuY7X7xWG0g" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3Dascy_Ee6KuY7X7xWG0g" name="buscar" visibility="public">
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Dassy_Ee6KuY7X7xWG0g" type="__25psMy_Ee6KuY7X7xWG0g" direction="return"/>
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3EBwMy_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3EBwMy_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
             </ownedOperation>
             <ownedOperation xmi:type="uml:Operation" xmi:id="__3EBwcy_Ee6KuY7X7xWG0g" name="borrar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Eo0My_Ee6KuY7X7xWG0g" name="trabajo" type="__25psMy_Ee6KuY7X7xWG0g"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="__3Eo0My_Ee6KuY7X7xWG0g" name="trabajos" type="__25psMy_Ee6KuY7X7xWG0g"/>
             </ownedOperation>
           </packagedElement>
         </packagedElement>
@@ -2698,7 +2698,7 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aJvAMy-Ee6KuY7X7xWG0g" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0aS48My-Ee6KuY7X7xWG0g" name="insertar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aUHEMy-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aUHEMy-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0aWjUMy-Ee6KuY7X7xWG0g" name="buscar" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aXxcMy-Ee6KuY7X7xWG0g" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
@@ -2710,7 +2710,7 @@
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0aftQMy-Ee6KuY7X7xWG0g" name="buscar" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0agUUMy-Ee6KuY7X7xWG0g" type="_0aMyUMy-Ee6KuY7X7xWG0g" direction="return"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aiJgMy-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0aiJgMy-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0aj-sMy-Ee6KuY7X7xWG0g" name="modificar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0axaEMy-Ee6KuY7X7xWG0g" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
@@ -2719,15 +2719,15 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a1rgMy-Ee6KuY7X7xWG0g" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0a4HwMy-Ee6KuY7X7xWG0g" name="anadirHoras" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a5V4My-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a5V4My-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a6kAMy-Ee6KuY7X7xWG0g" name="horas" type="_0a3gsMy-Ee6KuY7X7xWG0g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0a9AQMy-Ee6KuY7X7xWG0g" name="anadirPrecioMaterial" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a-OYMy-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a-OYMy-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0a_cgMy-Ee6KuY7X7xWG0g" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0bCf0My-Ee6KuY7X7xWG0g" name="cerrar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bDt8My-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bDt8My-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bE8EMy-Ee6KuY7X7xWG0g" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0bGKMMy-Ee6KuY7X7xWG0g" name="borrar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
@@ -2737,7 +2737,7 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bImcMy-Ee6KuY7X7xWG0g" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0bJNgMy-Ee6KuY7X7xWG0g" name="borrar" visibility="public" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bJ0kMy-Ee6KuY7X7xWG0g" name="trabajo" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bJ0kMy-Ee6KuY7X7xWG0g" name="trabajos" type="_0aMyUMy-Ee6KuY7X7xWG0g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0bKboMy-Ee6KuY7X7xWG0g" name="getClientes" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0bLCsMy-Ee6KuY7X7xWG0g" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return">

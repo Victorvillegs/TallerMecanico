@@ -1,20 +1,20 @@
 # Tarea: Taller mecánico
 ## Profesor: José Ramón Jiménez Reyes
-## Alumno:
+## Alumno: VICTOR VILLEGAS MUÑOZ
 
 Al cliente le ha gustado bastante la aplicación, pero nos comenta algunas mejoras que necesita la anterior versión y nuevas funcionalidades que le gustaría que tuviese. Todo ello lo abordaremos en este **segundo sprint**.
 
 Nos comenta que el taller realiza dos tipos de trabajos:
-- **Revisiones**: Son las revisiones rutinarias que se realizan antes de pasar la ITV o revisiones de seguridad. A estos trabajos solo se le pueden añadir horas, dependiendo de lo que los mecánicos tarden en realizarlos. Si en la revisión se detecta que hay que cambiar algo, habría que cerrar la revisión y abrir un nuevo trabajo mecánico.
+- **Revisiones**: Son las revisiones rutinarias que se realizan antes de pasar la ITV o revisiones de seguridad. A estos trabajos solo se le pueden añadir horas, dependiendo de lo que los mecánicos tarden en realizarlos. Si en la revisión se detecta que hay que cambiar algo, habría que cerrar la revisión y abrir un nuevo trabajos mecánico.
 - **Mecánicos**: Son los trabajos en los que se sustituyen piezas defectuosas, se corrigen errores de funcionamiento, etc. A este tipo de trabajos los mecánicos pueden, además de añadirles horas, añadirles precio del material que reemplazan.
 
 A la hora de facturar los trabajos, siempre se cobra un **precio fijo**, que se calcula como la multiplicación del **número de días** que el vehículo ha permanecido en el taller por **10**.
 
-A este precio fijo se le añade el **precio específico** de cada trabajo que se calcula de la siguiente forma:
+A este precio fijo se le añade el **precio específico** de cada trabajos que se calcula de la siguiente forma:
 - **Revisiones**: Sería el **número de horas** dedicadas por los mecánicos por **35**.
 - **Mecánicos**: Se calcula como el **número de horas** por **30**, más el **precio del material** reemplazado por **1.5**.
 
-También nos comenta que, tanto para **añadir horas a un trabajo**, **añadir precio de material a un trabajo mecánico** o **cerrar un trabajo**, no es operativo la forma en que se venía realizando. Le gustaría que para estas operaciones simplemente pidiese la matrícula del vehículo y el dato en cuestión, ya que un vehículo solo puede tener un trabajo abierto y sería mucho más cómodo para los mecánicos.
+También nos comenta que, tanto para **añadir horas a un trabajos**, **añadir precio de material a un trabajos mecánico** o **cerrar un trabajos**, no es operativo la forma en que se venía realizando. Le gustaría que para estas operaciones simplemente pidiese la matrícula del vehículo y el dato en cuestión, ya que un vehículo solo puede tener un trabajos abierto y sería mucho más cómodo para los mecánicos.
 
 Por tanto, todo esto lo abordaremos en este **segundo sprint**. Además, vamos a aprovechar este **sprint** para **refactorizar** lo que llevamos implementado hasta ahora para implementar de una forma adecuada el patrón **Modelo-Vista-Controlador**, ya que prevemos que tendremos varias vistas y varias modelos para nuestra aplicación. Supondremos que en el futuro podremos tener **varios modelos** y que cada uno de ellos puede trabajar con diferentes **fuentes de datos**. También supondremos que tendremos **varias vistas**. Para ello implementaremos los siguientes **patrones de diseño**:
 - **Observador (Observer)**: Utilizado para evitar el mayor problema de diseño en el sprint anterior: la dependencia cíclica que existe entre la vista y el controlador.
@@ -44,14 +44,14 @@ Para ello te muestro un diagrama de clases (en el que cuando se expresa cardinal
 
 #### Adecuación del `dominio`
 1. Extrae la clase abstracta `Trabajo` a partir de la clase `Revision` anterior.
-2. Adecúa la clase `Trabajo` para que quede tal y como se muestra en el diagrama de clases. El método `copiar`copiará un trabajo llamando al constructor copia de la clase específica y para ello deberá saber si el parámetro que se pasa es instancia de una u otra clase. El método `get` devolverá un trabajo, una revisión por ejemplo, con un cliente cualquiera, una fecha de inicio cualquiera y el vehículo indicado.
+2. Adecúa la clase `Trabajo` para que quede tal y como se muestra en el diagrama de clases. El método `copiar`copiará un trabajos llamando al constructor copia de la clase específica y para ello deberá saber si el parámetro que se pasa es instancia de una u otra clase. El método `get` devolverá un trabajos, una revisión por ejemplo, con un cliente cualquiera, una fecha de inicio cualquiera y el vehículo indicado.
 3. Adecúa la clase `Revision` para que quede como se muestra en el diagrama y se comporte como se indica en el enunciado.
 4. Crea la clase `Mecanico` para que quede como se muestra en el diagrama y se comporte como se indica en el enunciado.
 5. Comprueba que las clases de este paquete **pasan los tests** y cuando lo hagan haz un **commit**.
 
 #### Adecuación del paquete `negocio`
 1. Crea el nuevo paquete `memoria`.
-2. Modifica la clase `Trabajos` para que los métodos `anadirHoras`, `anadirPrecioMaterial` y `cerrar` se basen en el trabajo abierto para el vehículo indicado en el trabajo que se pasa como parámetro.
+2. Modifica la clase `Trabajos` para que los métodos `anadirHoras`, `anadirPrecioMaterial` y `cerrar` se basen en el trabajos abierto para el vehículo indicado en el trabajos que se pasa como parámetro.
 3. Extrae las interfaces de las clases.
 4. Crea la clase `FuenteDatosMemoria` y extra su interfaz.
 5. Crea el enumerado `FabricaFuenteDatos` que implementará la fábrica de modelos que por ahora solo tendrá la instancia `MEMORIA`.
