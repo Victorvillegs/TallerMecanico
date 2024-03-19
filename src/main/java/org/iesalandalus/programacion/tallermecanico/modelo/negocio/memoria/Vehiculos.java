@@ -1,14 +1,16 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Vehiculos {
-    private List<Vehiculo> coleccionVehiculos;
+public class Vehiculos implements IVehiculos {
+    private final List<Vehiculo> coleccionVehiculos;
     public Vehiculos() {
         this.coleccionVehiculos = new ArrayList<>();
     }

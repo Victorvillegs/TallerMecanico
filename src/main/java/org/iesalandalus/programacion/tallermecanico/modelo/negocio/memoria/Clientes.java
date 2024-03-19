@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Clientes implements IClientes {
-    private List<Cliente> coleccionClientes;
+    private final List<Cliente> coleccionClientes;
     public Clientes() {
         this.coleccionClientes = new ArrayList<>();
     }
@@ -27,7 +27,7 @@ public class Clientes implements IClientes {
         this.coleccionClientes.add(cliente);
     }
 
-    public boolean modificar(Cliente cliente, String nombre, String telefono)throws OperationNotSupportedException {
+    public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException{
         Objects.requireNonNull(cliente,"No se puede modificar un cliente nulo.");
         Cliente c = buscar(cliente);
         if (c == null) throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");

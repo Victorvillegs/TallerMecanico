@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IFuenteDatos;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
@@ -9,16 +10,16 @@ public class FuenteDeMemoria implements IFuenteDatos {
 
     @Override
     public IClientes crearClientes() {
-        return null;
+        return new Clientes();
     }
 
     @Override
     public IVehiculos crearVehiculos() {
-        return null;
+        return new Vehiculos();
     }
 
     @Override
     public ITrabajos crearTrabajos() {
-        return null;
+        return new Trabajos();
     }
 }

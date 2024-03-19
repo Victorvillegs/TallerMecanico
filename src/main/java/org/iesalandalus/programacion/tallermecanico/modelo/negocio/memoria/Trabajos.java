@@ -3,6 +3,8 @@ package org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
@@ -10,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Trabajos {
-    private List<Trabajo> coleccionRevisiones;
+public class Trabajos implements ITrabajos {
+    private final List<Trabajo> coleccionRevisiones;
     public Trabajos() {
         this.coleccionRevisiones = new ArrayList<>();
     }
