@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
-    private static final String ER_MARCA = "^[A-Za-z0-9\\s]+$\n";
-    private static final String ER_MATRICULA = "^[A-Za-z0-9]{1,7}$|^[A-Za-z0-9]{2,6}\\s?[A-Za-z0-9]{1,2}$\n";
+    private static final String ER_MARCA = "^[A-Za-z0-9\\s]+";
+    private static final String ER_MATRICULA = "^[A-Za-z0-9]{1,7}$|^[A-Za-z0-9]{2,6}\\s?[A-Za-z0-9]{1,2}";
     public Vehiculo{
         validarMarca(marca);
         validarModelo(modelo);

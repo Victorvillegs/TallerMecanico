@@ -19,12 +19,10 @@ public class Clientes implements IClientes {
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {
         Objects.requireNonNull(cliente,"No se puede insertar un cliente nulo.");
-        for (Cliente c : coleccionClientes){
-            if (c.equals(cliente)){
-                throw new OperationNotSupportedException("Ya existe un cliente con ese DNI.");
-            }
+        if (buscar(cliente) != null){
+            throw new OperationNotSupportedException("Ya existe un cliente con ese dni");
         }
-        this.coleccionClientes.add(cliente);
+        coleccionClientes.add(cliente);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException{

@@ -136,16 +136,5 @@ public abstract class Trabajo {
                 && Objects.equals(vehiculo, other.vehiculo);
     }
 
-//	public String toString() {
-//		if(!estaCerrada()) {
-//			return String.format("%s - %s: (%s - ), %d horas, %.2f € en material",
-//					this.cliente.toString(), this.vehiculo.toString(),
-//					fechaInicio.format(Trabajo.FORMATO_FECHA), getHoras(), getPrecioMaterial());
-//		}
-//        return String.format("%s - %s: (%s - %s), %d horas, %.2f € en material, %.2f € total",
-//        		this.cliente.toString(), this.vehiculo.toString(),
-//        		fechaInicio.format(Trabajo.FORMATO_FECHA),
-//        		fechaFin.format(Trabajo.FORMATO_FECHA), getHoras(),
-//        		getPrecioMaterial(), getPrecio());
-//    }
+
 }

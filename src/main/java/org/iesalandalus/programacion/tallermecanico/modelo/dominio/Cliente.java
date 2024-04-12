@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Cliente {
-    private static final String ER_NOMBRE = "^[A-Za-z-]+(?:[ '][A-Za-z-]+)*$\n";
-    private static final String ER_DNI = "^[a-zA-Z0-9]{7}$\n";
-    private static final String ER_TELEFONO ="^(?:(?:\\+|00)34[-.\\s]?)?(?:6\\d{8}|[89]\\d{8})$\n";
+    private static final String ER_NOMBRE = "^[A-Z][a-z]+ ?(?:[A-Za-z-]+)*"; //?: esto es para que no haga operaciones con esto
+    //*
+    private static final String ER_DNI = "^[\\d]{8}[TRWAGMYFPDXBNJZSQVHLCKE]";
+    private static final String ER_TELEFONO ="[\\d]{9}";
     private String nombre;
     private String dni;
     private String telefono;
@@ -72,12 +73,7 @@ public class Cliente {
     }
 
     public static Cliente get(String dni) {
-        Objects.requireNonNull(dni,"El DNI no puede ser nulo.");
-        if (!dni.matches(ER_DNI)){
-            throw new IllegalArgumentException("El DNI no tiene un formato válido.");
-        }
-        if (!comprobarLetraDni(dni)) throw new IllegalArgumentException("La letra del DNI no es correcta.");
-        return new Cliente("Dani", dni, "663420880");
+        return new Cliente("Lol", dni, "663420880");
     }
 
     @Override

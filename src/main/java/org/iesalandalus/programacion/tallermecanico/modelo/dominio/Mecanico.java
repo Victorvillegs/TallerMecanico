@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
 
 public class Mecanico extends Trabajo{
 
