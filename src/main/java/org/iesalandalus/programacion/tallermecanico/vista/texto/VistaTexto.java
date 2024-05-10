@@ -1,20 +1,19 @@
 package org.iesalandalus.programacion.tallermecanico.vista.texto;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
-import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 
+import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-public class VistaTexto implements Vista {
-
-    private final GestorEventos gestorEventos;
-
-    public VistaTexto() {
-        this.gestorEventos = new GestorEventos(Evento.values());
-    }
+public class VistaTexto implements org.iesalandalus.programacion.tallermecanico.vista.Vista {
+    public static final String DNI_EJEMPLO = "11111111H";
+    public static final String MATRICULA_DEFECTO = "1111JKK";
+    private final GestorEventos gestorEventos = new GestorEventos(Evento.values());
 
     @Override
     public GestorEventos getGestorEventos() {
@@ -23,159 +22,179 @@ public class VistaTexto implements Vista {
 
     @Override
     public void comenzar() {
-        Evento opcion;
+        Evento evento;
         do {
             Consola.mostrarMenu();
-            opcion = Consola.elegirOpcion();
-            ejecutar(opcion);
-        } while (opcion != Evento.SALIR);
-    }
-
-    private void ejecutar(Evento evento) {
-        Consola.mostrarCabecera(evento.toString());
-        gestorEventos.notificar(evento);
+            evento = Consola.elegirOpcion();
+            Consola.mostrarCabecera(evento.name());
+            ejecutar(evento);
+        } while (evento != Evento.SALIR);
     }
 
     @Override
     public void terminar() {
-        System.out.println("Usted ha cerrado la aplicación por lo tanto, ha finalizado su ejecución.");
+        System.out.printf("¡HASTA PRONTO!%n");
+    }
+
+    private void ejecutar(Evento opcion) {
+        getGestorEventos().notificar(opcion);
     }
 
     @Override
     public Cliente leerCliente() {
-        String nombre = Consola.leerCadena("Introduce un nombre:");
-        String dni = Consola.leerCadena("Introduce un dni:");
-        String telefono = Consola.leerCadena("Introduce un teléfono:");
-        return new Cliente(nombre, dni, telefono);
+        return new Cliente(Consola.leerCadena("Dime el nombre del cliente: "), Consola.leerCadena("Dime el dni del cliente: "), Consola.leerCadena("Dime el teléfono del cliente: "));
     }
 
     @Override
     public Cliente leerClienteDni() {
-        return Cliente.get(Consola.leerCadena("Introduce un dni:"));
+        return new Cliente(Cliente.get(Consola.leerCadena("Dime el DNI del cliente: ")));
     }
 
     @Override
     public String leerNuevoNombre() {
-        return Consola.leerCadena("Introduce un nuevo nombre:");
+        String nombre;
+            nombre = Consola.leerCadena("Dime el nuevo nombre del cliente: ");
+            if (!nombre.isBlank()) {
+                new Cliente(nombre, VistaTexto.DNI_EJEMPLO, "600600600");
+            }
+        return nombre;
     }
 
     @Override
     public String leerNuevoTelefono() {
-        return Consola.leerCadena("Introduce un nuevo teléfono:");
+        String telefono;
+        telefono = Consola.leerCadena("Dime el nuevo telefono del cliente: ");
+        if (!telefono.isBlank()) {
+            new Cliente("Juan", VistaTexto.DNI_EJEMPLO, telefono);
+        }
+        return telefono;
     }
 
     @Override
     public Vehiculo leerVehiculo() {
-        String marca = Consola.leerCadena("Introduce una marca:");
-        String modelo = Consola.leerCadena("Introduce un modelo:");
-        String matricula = Consola.leerCadena("Introduce una matrícula:");
-        return new Vehiculo(marca, modelo, matricula);
+        return new Vehiculo(Consola.leerCadena("Dime la marca del vehículo: "), Consola.leerCadena("Dime el modelo del vehículo: "), Consola.leerCadena("Dime la matrícula del vehículo: "));
     }
 
     @Override
     public Vehiculo leerVehiculoMatricula() {
-        return Vehiculo.get(Consola.leerCadena("Introduce una matrícula:"));
+        return Vehiculo.get(Consola.leerCadena("Dime la matrícula del vehículo: "));
     }
 
     @Override
     public Trabajo leerRevision() {
-        Cliente cliente = leerClienteDni();
-        Vehiculo vehiculo = leerVehiculoMatricula();
-        LocalDate fechaInicio = Consola.leerFecha("Introduce una fecha de inicio:");
-        return new Revision(cliente, vehiculo, fechaInicio);
+        return new Revision(leerClienteDni(), leerVehiculoMatricula(), Consola.leerFecha("Dime la fecha de inicio del trabajo: "));
     }
 
     @Override
     public Trabajo leerMecanico() {
-        Cliente cliente = leerClienteDni();
-        Vehiculo vehiculo = leerVehiculoMatricula();
-        LocalDate fechaInicio = Consola.leerFecha("Introduce una fecha de inicio:");
-        return new Mecanico(cliente, vehiculo, fechaInicio);
+        return new Mecanico(leerClienteDni(), leerVehiculoMatricula(), Consola.leerFecha("Dime la fecha de inicio del trabajo: "));
     }
 
     @Override
     public Trabajo leerTrabajoVehiculo() {
-        Vehiculo vehiculo = leerVehiculoMatricula();
-        return Trabajo.get(vehiculo);
+        return Trabajo.get(leerVehiculoMatricula());
     }
 
     @Override
-    public int leerHoras() {
-        return Consola.leerEntero("Introduce el número de horas para un trabajo:");
+    public int leerHoras() throws OperationNotSupportedException {
+        int horas = Consola.leerEntero("Dime las horas que quieres añadir: ");
+        Revision revision = new Revision(Cliente.get(VistaTexto.DNI_EJEMPLO), Vehiculo.get(VistaTexto.MATRICULA_DEFECTO), LocalDate.now());
+        revision.anadirHoras(horas);
+        return horas;
     }
 
     @Override
-    public float leerPrecioMaterial() {
-        return Consola.leerReal("Introduce el precio de material para un trabajo mecánico:");
+    public float leerPrecioMaterial() throws OperationNotSupportedException {
+        float precioMaterial = Consola.leerReal("Dime el precio que quieres añadir: ");
+        Mecanico mecanico = new Mecanico(Cliente.get(VistaTexto.DNI_EJEMPLO), Vehiculo.get(VistaTexto.MATRICULA_DEFECTO), LocalDate.now());
+        mecanico.anadirPrecioMaterial(precioMaterial);
+        return precioMaterial;
     }
 
     @Override
-    public LocalDate leerFechaCierre() {
-        return Consola.leerFecha("Introduce la fecha de cierre para dar por finalizado el servicio:");
+    public LocalDate leerFechaCierre() throws OperationNotSupportedException {
+        LocalDate fechaCierre = Consola.leerFecha("Dime la fecha de cierre: ");
+        Revision revision = new Revision(Cliente.get(VistaTexto.DNI_EJEMPLO), Vehiculo.get(VistaTexto.MATRICULA_DEFECTO), LocalDate.of(1900, 1, 1));
+        revision.cerrar(fechaCierre);
+        return fechaCierre;
+    }
+
+    public LocalDate leerMes() {
+        return Consola.leerFecha("Dime una fecha para comprobar su mes: ");
     }
 
     @Override
-    public void notificarResultado(Evento evento, String texto, boolean exito) {
-        Objects.requireNonNull(evento, "No puedo notificar un evento nulo.");
-        Objects.requireNonNull(texto, "No puedo mostrar un texto nulo.");
-        if (exito) {
-            System.out.printf("%s%n", texto);
-        } else {
-            System.out.printf("ERROR: %s%n", texto);
+    public void notificarResultado(Evento evento, String texto, boolean exito){
+        if (!texto.isBlank()) {
+            Consola.mostrarCabecera(evento.name());
+            if (exito) {
+                System.out.printf("%s%n", texto);
+            } else {
+                System.out.printf("ERROR: %s%n", texto);
+            }
         }
     }
 
     @Override
     public void mostrarCliente(Cliente cliente) {
-        Objects.requireNonNull(cliente, "No puedo mostrar un cliente que no existe.");
-        System.out.println(cliente);
+        Objects.requireNonNull(cliente, "El cliente no puede ser nulo.");
+        System.out.printf("%n%s%n", cliente);
     }
 
     @Override
     public void mostrarVehiculo(Vehiculo vehiculo) {
-        Objects.requireNonNull(vehiculo, "No puedo mostrar un vehículo que no existe.");
-        System.out.println(vehiculo);
+        Objects.requireNonNull(vehiculo, "El vehiculo no puede ser nulo.");
+        System.out.printf("%n%s%n", vehiculo);
     }
 
     @Override
     public void mostrarTrabajo(Trabajo trabajo) {
-        Objects.requireNonNull(trabajo, "No puedo mostrar un trabajo que no existe.");
-        System.out.println(trabajo);
+        Objects.requireNonNull(trabajo, "El vehiculo no puede ser nulo.");
+        System.out.printf("%n%s%n", trabajo);
     }
 
     @Override
     public void mostrarClientes(List<Cliente> clientes) {
-        Objects.requireNonNull(clientes, "No puedo mostrar clientes nulos.");
-        if (clientes.isEmpty()) {
-            System.out.println("No hay clientes para mostrar.");
-        } else {
-            for (Cliente cliente : clientes) {
-                System.out.println(cliente);
+        Objects.requireNonNull(clientes, "Los clientes no pueden ser nulos.");
+        if (!clientes.isEmpty()) {
+            for (Cliente cliente: clientes) {
+                System.out.printf("%s%n", cliente);
             }
+        } else {
+            System.out.printf("No existe ningún cliente.%n");
         }
     }
 
     @Override
     public void mostrarVehiculos(List<Vehiculo> vehiculos) {
-        Objects.requireNonNull(vehiculos, "No puedo mostrar vehiculos nulos.");
-        if (vehiculos.isEmpty()) {
-            System.out.println("No hay vehículos para mostrar.");
-        } else {
-            for (Vehiculo vehiculo : vehiculos) {
-                System.out.println(vehiculo);
+        Objects.requireNonNull(vehiculos, "Los vehículos no pueden ser nulos.");
+        if (!vehiculos.isEmpty()) {
+            for (Vehiculo vehiculo: vehiculos) {
+                System.out.printf("%s%n", vehiculo);
             }
+        } else {
+            System.out.printf("No existe ningún vehículo.%n");
         }
     }
 
     @Override
     public void mostrarTrabajos(List<Trabajo> trabajos) {
-        Objects.requireNonNull(trabajos, "No puedo mostrar trabajos nulos.");
-        if (trabajos.isEmpty()) {
-            System.out.println("No hay trabajos para mostrar.");
-        } else {
-            for (Trabajo trabajo : trabajos) {
-                System.out.println(trabajo);
+        Objects.requireNonNull(trabajos, "Los trabajos no pueden ser nulos.");
+        if (!trabajos.isEmpty()) {
+            for (Trabajo trabajo: trabajos) {
+                System.out.printf("%s%n", trabajo);
             }
+        } else {
+            System.out.printf("No existe ningún trabajo.%n");
+        }
+    }
+    @Override
+    public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
+        for (Map.Entry<TipoTrabajo,Integer> estadistica : estadisticas.entrySet()) {
+            System.out.println("Tipo trabajo" + estadistica.getKey());
+            System.out.println("Valor de la estadistica" + estadistica.getValue());
+            //te devuelve un valor y pertenece a los mapas
+            //sirve para que coja loos valores del mapa
         }
     }
 }

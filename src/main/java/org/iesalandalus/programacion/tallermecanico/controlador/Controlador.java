@@ -6,6 +6,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.texto.Consola;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.Objects;
 
 public class Controlador implements IControlador {
@@ -35,77 +36,81 @@ public class Controlador implements IControlador {
     }
 
 
+    @Override
     public void actualizar(Evento evento) {
+        Objects.requireNonNull(evento, "El evento no puede ser nulo.");
         String resultado = "";
+        boolean exito = false;
         try {
             switch (evento) {
                 case INSERTAR_CLIENTE -> {
                     modelo.insertar(vista.leerCliente());
-                    resultado = "Cliente insertado correctamente.";
+                    resultado = "Se ha insertado el cliente correctamente.";
                 }
                 case BUSCAR_CLIENTE -> vista.mostrarCliente(modelo.buscar(vista.leerClienteDni()));
                 case BORRAR_CLIENTE -> {
-                    modelo.borrar(modelo.buscar(vista.leerClienteDni()));
-                    resultado = "Cliente eliminado correctamente.";
+                    modelo.borrar(vista.leerClienteDni());
+                    resultado = "Se ha borrado el cliente.";
                 }
                 case LISTAR_CLIENTES -> vista.mostrarClientes(modelo.getClientes());
+
                 case MODIFICAR_CLIENTE -> {
-                    if (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) {
-                        resultado = "Cliente modificado correctamente.";
+                    boolean modificado = modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono());
+                    if (modificado) {
+                        resultado = "Se ha modificado el cliente.";
                     } else {
-                        resultado = "El cliente no se ha podido modificar.";
+                        resultado = "El cliente no se ha modificado.";
                     }
                 }
                 case INSERTAR_VEHICULO -> {
                     modelo.insertar(vista.leerVehiculo());
-                    resultado = "Vehículo insertado correctamente.";
+                    resultado = "Se ha insertado el vehículo correctamente.";
                 }
                 case BUSCAR_VEHICULO -> vista.mostrarVehiculo(modelo.buscar(vista.leerVehiculoMatricula()));
                 case BORRAR_VEHICULO -> {
-                    modelo.borrar(modelo.buscar(vista.leerVehiculoMatricula()));
-                    resultado = "Vehículo eliminado correctamente.";
+                    modelo.borrar(vista.leerVehiculoMatricula());
+                    resultado = "Se ha borrado el vehiculo.";
                 }
                 case LISTAR_VEHICULOS -> vista.mostrarVehiculos(modelo.getVehiculos());
+
                 case INSERTAR_REVISION -> {
-                    modelo.insertar(new Revision(modelo.buscar(vista.leerClienteDni()), modelo.buscar(vista.leerVehiculoMatricula()), Consola.leerFecha("Introduce la fecha de inicio de la revisión:")));
-                    resultado = "Revisión insertada correctamente.";
+                    modelo.insertar(vista.leerRevision());
+                    resultado = "Se ha insertado la revisión correctamente.";
                 }
                 case INSERTAR_MECANICO -> {
-                    modelo.insertar(new Mecanico(modelo.buscar(vista.leerClienteDni()), modelo.buscar(vista.leerVehiculoMatricula()), Consola.leerFecha("Introduce la fecha de inicio del trabajo mecánico:")));
-                    resultado = "Trabajo mecánico insertado correctamente.";
+                    modelo.insertar(vista.leerMecanico());
+                    resultado = "Se ha insertado el trabajo mecánico correctamente.";
                 }
-                case BUSCAR_TRABAJO -> {
-                    Trabajo trabajo = new Revision(modelo.buscar(vista.leerClienteDni()), modelo.buscar(vista.leerVehiculoMatricula()), Consola.leerFecha("Introduce la fecha de inicio:"));
-                    Trabajo trabajoEncontrado = modelo.buscar(trabajo);
-                    if (trabajoEncontrado == null) {
-                        trabajo = new Mecanico(trabajo.getCliente(), trabajo.getVehiculo(), trabajo.getFechaInicio());
-                    }
-                    vista.mostrarTrabajo(trabajo);
+                case BUSCAR_TRABAJO -> vista.mostrarTrabajo(modelo.buscar(vista.leerRevision()));
+                case BORRAR_TRABAJO -> {
+                    modelo.borrar(modelo.buscar(vista.leerRevision()));
+                    resultado = "Se ha borrado el trabajo.";
                 }
-                case BORRAR_TRABAJO -> modelo.borrar(modelo.buscar(vista.leerTrabajoVehiculo()));
                 case LISTAR_TRABAJOS -> vista.mostrarTrabajos(modelo.getTrabajos());
+
                 case LISTAR_TRABAJOS_CLIENTE -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerClienteDni()));
-                case LISTAR_TRABAJOS_VEHICULO ->
-                        vista.mostrarTrabajos(modelo.getTrabajos(vista.leerVehiculoMatricula()));
+
+                case LISTAR_TRABAJOS_VEHICULO -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerVehiculoMatricula()));
+
                 case ANADIR_HORAS_TRABAJO -> {
-                    modelo.anadirHoras(modelo.buscar(vista.leerMecanico()), vista.leerHoras());
-                    resultado = "Las horas se han añadido correctamente.";
+                    modelo.anadirHoras((vista.leerTrabajoVehiculo()), vista.leerHoras());
+                    resultado = "Se han añadido las horas al trabajo.";
                 }
                 case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
-                    modelo.anadirPrecioMaterial(new Mecanico(modelo.buscar(vista.leerClienteDni()), modelo.buscar(vista.leerVehiculoMatricula()), Consola.leerFecha("Introduce la fecha de inicio:")), vista.leerPrecioMaterial());
-                    resultado = "El precio del material se ha añadido correctamente.";
+                    modelo.anadirPrecioMaterial((vista.leerTrabajoVehiculo()), vista.leerPrecioMaterial());
+                    resultado = "Se ha añadido el precio material al trabajo.";
                 }
                 case CERRAR_TRABAJO -> {
-                    modelo.cerrar(vista.leerMecanico(), vista.leerFechaCierre());
-                    resultado = "El trabajo se ha cerrado correctamente.";
+                    modelo.cerrar((vista.leerTrabajoVehiculo()), vista.leerFechaCierre());
+                    resultado = "Se ha cerrado el trabajo correctamente.";
                 }
-                case SALIR -> System.out.println("Usted ha salido de la aplicación.");
+                case MOSTRAR_ESTADISTICAS_MENSUALES -> vista.mostrarEstadisticasMensuales(modelo.getEstadisticasMensuales(vista.leerMes()));
+                case SALIR -> terminar();
             }
-            if (!resultado.isBlank()) {
-                vista.notificarResultado(evento, resultado, true);
-            }
-        } catch (Exception e) {
-            vista.notificarResultado(evento, e.getMessage(), false);
+            exito = true;
+        } catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
+            resultado = e.getMessage();
         }
+        vista.notificarResultado(evento,resultado,exito);
     }
 }

@@ -6,9 +6,15 @@ import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 public interface IClientes {
-    public List<Cliente> get();
-    public void insertar(Cliente cliente) throws OperationNotSupportedException;
-    public boolean modificar (Cliente cliente, String nommbre,String telefono) throws OperationNotSupportedException;
-    public Cliente buscar (Cliente cliente);
-    public void borrar (Cliente cliente) throws OperationNotSupportedException;
+    void comenzar();
+    void terminar();
+    List<Cliente> get();
+
+    void insertar(Cliente cliente) throws OperationNotSupportedException;
+
+    boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException;
+
+    Cliente buscar(Cliente cliente);
+
+    void borrar(Cliente cliente) throws OperationNotSupportedException;
 }

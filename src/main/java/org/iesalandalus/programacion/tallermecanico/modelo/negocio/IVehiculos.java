@@ -7,8 +7,15 @@ import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 public interface IVehiculos {
-    public List<Vehiculo> get();
-    public void insertar(Vehiculo vehiculo)throws OperationNotSupportedException;
-    public Vehiculo buscar (Vehiculo vehiculo);
-    public void borrar (Vehiculo vehiculo)throws OperationNotSupportedException;
+    void comenzar();
+
+    void terminar();
+
+    List<Vehiculo> get();
+
+    void insertar(Vehiculo vehiculo) throws OperationNotSupportedException;
+
+    Vehiculo buscar(Vehiculo vehiculo);
+
+    void borrar(Vehiculo vehiculo) throws OperationNotSupportedException;
 }

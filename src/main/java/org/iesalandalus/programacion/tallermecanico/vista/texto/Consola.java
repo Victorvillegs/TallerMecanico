@@ -1,74 +1,75 @@
 package org.iesalandalus.programacion.tallermecanico.vista.texto;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
+import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.regex.Pattern;
-
+import java.util.Objects;
 
 public class Consola {
-
     private static final String CADENA_FORMATO_FECHA = "dd/MM/yyyy";
 
-    private Consola() {
-
-    }
+    private Consola(){}
 
     static void mostrarCabecera(String mensaje) {
-        System.out.println(mensaje);
-        System.out.println("-".repeat(mensaje.length()));
+        Objects.requireNonNull(mensaje);
+        System.out.printf("%n%s%n", mensaje);
+        System.out.printf(String.format("%s%n", ("-").repeat(mensaje.length())));
     }
 
     static void mostrarMenu() {
-        mostrarCabecera("Programa que simula la gestión de un taller mecánico");
-        for (int i = 0; i < Evento.values().length; i++) {
-            System.out.println(Evento.values()[i]);
+        mostrarCabecera("MENÚ");
+        for (Evento evento : Evento.values()) {
+            System.out.printf("%s%n", evento);
         }
-    }
-
-    static Evento elegirOpcion() {
-        boolean esOpcionValida = false;
-        Evento opcion = null;
-        do {
-            try {
-                opcion = Evento.get(leerEntero("Introduce una opción: "));
-                esOpcionValida = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (!esOpcionValida);
-        return opcion;
+        System.out.println();
     }
 
     static int leerEntero(String mensaje) {
+        Objects.requireNonNull(mensaje);
         System.out.print(mensaje);
         return Entrada.entero();
     }
 
     static float leerReal(String mensaje) {
+        Objects.requireNonNull(mensaje);
         System.out.print(mensaje);
         return Entrada.real();
     }
 
     static String leerCadena(String mensaje) {
+        Objects.requireNonNull(mensaje);
         System.out.print(mensaje);
         return Entrada.cadena();
     }
 
-    public static LocalDate leerFecha(String mensaje) {
-        Pattern patron = Pattern.compile(CADENA_FORMATO_FECHA);
-        DateTimeFormatter comparador = DateTimeFormatter.ofPattern(String.valueOf(patron));
+    static LocalDate leerFecha(String mensaje) {
         LocalDate fecha = null;
-        try {
-            String cadenaFecha = leerCadena(mensaje);
-            fecha = LocalDate.parse(cadenaFecha, comparador);
-        } catch (DateTimeParseException e) {
-            System.out.println("La fecha introducida no es válida, inténtelo de nuevo.");
-        }
+        boolean fechaCorrecta = false;
+        do {
+            try {
+                fecha = LocalDate.parse(leerCadena(mensaje), DateTimeFormatter.ofPattern(CADENA_FORMATO_FECHA));
+                fechaCorrecta = true;
+            } catch (DateTimeParseException ignored){
+                System.out.printf("La fecha introducida tiene un formato inválido (dd/MM/yyyy).%n");
+            }
+        } while (!fechaCorrecta);
         return fecha;
     }
-}
 
+    static Evento elegirOpcion(){
+        Evento evento = null;
+        do {
+            try {
+                evento = Evento.get(leerEntero("Elige una opción: "));
+            } catch (IllegalArgumentException e) {
+                System.out.printf("%s%n%n", e.getMessage());
+            }
+        } while (evento == null);
+        return evento;
+    }
+}

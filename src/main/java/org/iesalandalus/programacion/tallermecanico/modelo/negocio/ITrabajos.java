@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Map;
 
 public interface ITrabajos {
 
@@ -26,6 +28,10 @@ void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial)throws Operation
 void cerrar(Trabajo trabajo, LocalDate fechaFin)throws OperationNotSupportedException;
 
 Trabajo buscar(Trabajo trabajo);
-
+void comenzar();
+void terminar();
 void borrar(Trabajo trabajo)throws OperationNotSupportedException;
+Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) ;
+
+
 }
