@@ -75,10 +75,6 @@ public class Clientes implements IClientes {
         UtilidadesXml.escribirDocumentoXml(documentoXml, FICHERO_CLIENTES);
     }
 
-    private Document crearDocumentoXml() {
-        DocumentBuilder constructor = UtilidadesXml.crearConstructorDocumentoXml();
-        return constructor.newDocument();
-    }
 
     private Element getElemento(Document documentoXml, Cliente cliente) {
         Element elementoCliente = documentoXml.createElement(CLIENTE);
@@ -100,6 +96,19 @@ public class Clientes implements IClientes {
             throw new OperationNotSupportedException("Ya existe un cliente con ese DNI.");
         }
         coleccionClientes.add(cliente);
+    }
+    private Document crearDocumentoXml(){
+        DocumentBuilder constructor = UtilidadesXml.crearConstructorDocumentoXml();
+        Document documentoXml = null;
+        if (constructor != null){
+            documentoXml = constructor.newDocument();
+            documentoXml.appendChild(documentoXml.createElement(RAIZ));
+            for (Cliente cliente : coleccionClientes){
+                Element elemento = getElemento(documentoXml, cliente);
+                documentoXml.getDocumentElement().appendChild(elemento);
+            }
+        }
+        return documentoXml;
     }
 
     @Override

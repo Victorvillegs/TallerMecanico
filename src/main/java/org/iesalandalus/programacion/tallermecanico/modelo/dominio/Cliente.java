@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Cliente {
-    private static final String ER_NOMBRE = "^[A-Z][a-z]+ ?(?:[A-Za-z-]+)*"; //?: esto es para que no haga operaciones con esto
+
+    private static final String ER_NOMBRE = "[A-ZÁÉÍÓÚÑ][a-záéíóúüñ]+(?: [A-ZÁÉÍÓÚ][a-záéíóúüñ]+)*+"; //?: esto es para que no haga operaciones con esto
     //*
-    private static final String ER_DNI = "^[\\d]{8}[TRWAGMYFPDXBNJZSQVHLCKE]";
+    public static final String ER_DNI = "^[\\d]{8}[TRWAGMYFPDXBNJZSQVHLCKE]";
     private static final String ER_TELEFONO ="[\\d]{9}";
     private String nombre;
     private String dni;

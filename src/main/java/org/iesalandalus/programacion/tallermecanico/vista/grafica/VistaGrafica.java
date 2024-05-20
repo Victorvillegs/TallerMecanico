@@ -5,9 +5,12 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.Vista;
+import org.iesalandalus.programacion.tallermecanico.vista.controladores.InsertarCliente;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
@@ -48,9 +51,12 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Cliente leerCliente() {
-        return null;
+        InsertarCliente controlador = (InsertarCliente) Controladores.get("/vista/InsertarCliente.fxml","Insertar Cliente",ventanaPrincipal.getEscenario());
+        // copia la informacion que tengo en mi vista de insertar cliente
+        return controlador.getCliente();
+        // esto es para que devuelva el getCliente del insertar vista
     }
-
+//96922737R
     @Override
     public Cliente leerClienteDni() {
         return null;
@@ -113,7 +119,12 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void notificarResultado(Evento evento, String texto, boolean exito) {
+        if (exito){
+            Dialogos.mostrarDialogoInformacion(evento.toString(), texto, ventanaPrincipal.getEscenario());
+        }else{
+            Dialogos.mostrarDialogoError(evento.toString(), texto, ventanaPrincipal.getEscenario());
 
+        }
     }
 
     @Override
