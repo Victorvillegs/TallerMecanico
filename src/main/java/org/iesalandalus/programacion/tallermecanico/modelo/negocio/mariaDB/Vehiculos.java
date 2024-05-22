@@ -49,16 +49,8 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public List<Vehiculo> get() {
-        List<Vehiculos> vehiculos = new ArrayList<>();
-        try (Statement sentencia = conexion.createStatement()) {
-            ResultSet filas = sentencia.executeQuery("select * from clientes");
-            while (filas.next()) {
-                vehiculos.add(getVehiculo(filas));
-            }
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-        return vehiculos;
+
+        return null;
     }
     private void prepararSentencia(PreparedStatement sentencia, Vehiculo vehiculo) throws SQLException {
         sentencia.setString(1, vehiculo.marca());
@@ -98,16 +90,7 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No se puede borrar un vehiculo nulo.");
-        try (PreparedStatement sentencia = conexion.prepareStatement("delete from clientes where dni = ?")) {
-            sentencia.setString(1, vehiculo.getClass());
-            int filas = sentencia.executeUpdate();
-            if (filas == 0) {
-                throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
-            }
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
+
     }
 
 

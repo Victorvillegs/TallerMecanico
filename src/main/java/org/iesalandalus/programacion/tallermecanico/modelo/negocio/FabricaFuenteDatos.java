@@ -1,7 +1,7 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.FuenteDatosFicheros;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.mariaDB.FabricaFuenteDatosMariaDB;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.mariaDB.FuenteDatosMariaDB;
 
 public enum FabricaFuenteDatos {
     FICHEROS {
@@ -12,7 +12,7 @@ public enum FabricaFuenteDatos {
     },MARIADB {
         @Override
         public IFuenteDatos crear() {
-            return new FabricaFuenteDatosMariaDB();
+            return new FuenteDatosMariaDB();
         }
     };
 

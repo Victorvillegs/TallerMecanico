@@ -1,24 +1,23 @@
-package org.iesalandalus.programacion.tallermecanico.modelo.negocio.mariaDB;
+package org.iesalandalus.programacion.tallermecanico.modelo.negocio.mongoDB;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IFuenteDatos;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
 
-public class FabricaFuenteDatosMariaDB implements IFuenteDatos {
-
+public class FuenteDatosMongoDB implements IFuenteDatos {
     @Override
     public IClientes crearClientes() {
-        return null;
+        return Clientes.getInstancia();
     }
 
     @Override
     public IVehiculos crearVehiculos() {
-        return null;
+        return Vehiculos.getInstancia();
     }
 
     @Override
     public ITrabajos crearTrabajos() {
-        return null;
+        return Trabajos.getInstancia();
     }
 }
